@@ -515,6 +515,55 @@
         .code-content .string { color: #a5d6ff; }
         .code-content .variable { color: #79c0ff; }
 
+        /* Inspiration / Videos Section */
+        .inspiration-section {
+            padding: 120px 6%;
+            background: var(--slate-800);
+            text-align: center;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 50px auto 0;
+        }
+
+        .video-card {
+            background: var(--slate-900);
+            border: 1px solid var(--slate-700);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 24px;
+            color: var(--white);
+            padding: 20px;
+        }
+
         /* Closing */
         .closing-section {
             min-height: 100vh;
@@ -584,6 +633,10 @@
             .stat-row, .spec-row {
                 justify-content: center;
             }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 600px) {
@@ -594,6 +647,11 @@
             .destinations {
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+                padding: 0 10px;
             }
         }
     </style>
@@ -790,6 +848,26 @@
             <div class="split-content">
                 <span class="section-label">08 / Create</span>
                 <h2 class="section-title">Launch a Startup</h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inspiration / Videos -->
+    <section class="inspiration-section">
+        <span class="section-label">09 / Fuel</span>
+        <h2 class="section-title">Inspiration</h2>
+        <div class="video-grid">
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/_HZM0QiuUS8?si=Hzhet4f9qO6k0O__" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <h3 class="video-title">Iris</h3>
+            </div>
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/V6xLYt265ZM?si=AIM9556mmltouaab" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <h3 class="video-title">Inspiration</h3>
             </div>
         </div>
     </section>
