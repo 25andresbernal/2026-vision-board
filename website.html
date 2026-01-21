@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 Vision Board</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #6366f1;
+            --accent-light: #818cf8;
+            --accent-glow: rgba(99, 102, 241, 0.4);
+            --mint: #10b981;
+            --coral: #f43f5e;
+            --amber: #f59e0b;
+            --cyan: #06b6d4;
+            --slate-900: #0f172a;
+            --slate-800: #1e293b;
+            --slate-700: #334155;
+            --slate-100: #f1f5f9;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--slate-900);
+            color: var(--slate-100);
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--slate-900);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 3px;
+        }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--slate-900) 0%, #1a1a2e 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, var(--accent-glow) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(244, 63, 94, 0.15) 0%, transparent 50%);
+        }
+
+        .hero-year {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(180px, 30vw, 400px);
+            color: transparent;
+            -webkit-text-stroke: 2px var(--accent-light);
+            opacity: 0.2;
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(48px, 12vw, 140px);
+            letter-spacing: 0.15em;
+            background: linear-gradient(135deg, var(--accent-light), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(16px, 2.5vw, 24px);
+            font-weight: 300;
+            color: var(--slate-100);
+            opacity: 0.7;
+            margin-top: 10px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .scroll-arrow {
+            width: 28px;
+            height: 44px;
+            border: 2px solid var(--accent-light);
+            border-radius: 14px;
+            position: relative;
+            opacity: 0.6;
+        }
+
+        .scroll-arrow::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            background: var(--accent-light);
+            border-radius: 50%;
+            animation: scrollBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollBounce {
+            0%, 100% { top: 8px; opacity: 1; }
+            50% { top: 26px; opacity: 0.3; }
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 80px 6%;
+            position: relative;
+        }
+
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(48px, 8vw, 100px);
+            line-height: 0.95;
+            margin-bottom: 20px;
+        }
+
+        /* Two Column Layout */
+        .split-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            min-height: 100vh;
+            padding: 80px 6%;
+        }
+
+        .split-section.reverse .split-image {
+            order: 2;
+        }
+
+        .split-image {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+        }
+
+        .split-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .split-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .split-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 2px solid var(--accent);
+            border-radius: 24px;
+            opacity: 0.5;
+        }
+
+        .split-content {
+            max-width: 500px;
+        }
+
+        /* Childhood Section */
+        .childhood-section {
+            background: linear-gradient(180deg, var(--slate-900) 0%, var(--slate-800) 100%);
+        }
+
+        .childhood-section .split-image {
+            border: 3px solid var(--accent);
+            transform: rotate(-2deg);
+        }
+
+        .big-quote {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(40px, 6vw, 72px);
+            background: linear-gradient(135deg, var(--white), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+
+        /* Graduation */
+        .graduation-section {
+            background: linear-gradient(135deg, var(--slate-800) 0%, var(--slate-900) 100%);
+        }
+
+        .badge-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 100px;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* Bodybuilding */
+        .bodybuilding-section {
+            background: 
+                radial-gradient(circle at 70% 30%, rgba(244, 63, 94, 0.1) 0%, transparent 50%),
+                var(--slate-900);
+        }
+
+        .stat-row {
+            display: flex;
+            gap: 40px;
+            margin-top: 24px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 48px;
+            color: var(--coral);
+        }
+
+        .stat-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            opacity: 0.6;
+        }
+
+        /* Truck */
+        .truck-section {
+            background: linear-gradient(180deg, var(--slate-800) 0%, var(--slate-900) 100%);
+        }
+
+        .spec-row {
+            display: flex;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .spec {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 16px 24px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .spec-value {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
+            color: var(--cyan);
+        }
+
+        .spec-name {
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.5;
+            margin-top: 4px;
+        }
+
+        /* Goals Grid */
+        .goals-section {
+            padding: 100px 6%;
+            background: var(--slate-800);
+        }
+
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 1200px;
+            margin: 40px auto 0;
+        }
+
+        .goal-card {
+            background: var(--slate-900);
+            border: 1px solid var(--slate-700);
+            border-radius: 20px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .goal-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+        }
+
+        .goal-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+
+        .goal-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 24px;
+            color: var(--white);
+            letter-spacing: 0.02em;
+        }
+
+        /* Family */
+        .family-section {
+            text-align: center;
+            padding: 120px 6%;
+            background: 
+                radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 60%),
+                var(--slate-900);
+        }
+
+        .destinations {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .dest-card {
+            background: var(--slate-800);
+            border: 1px solid var(--slate-700);
+            border-radius: 20px;
+            padding: 40px;
+            min-width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        .dest-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+        }
+
+        .dest-icon {
+            font-size: 56px;
+            margin-bottom: 16px;
+        }
+
+        .dest-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
+            color: var(--white);
+        }
+
+        /* Career */
+        .career-section {
+            padding: 120px 6%;
+            background: linear-gradient(180deg, var(--slate-800) 0%, var(--slate-900) 100%);
+            text-align: center;
+        }
+
+        .growth-path {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .growth-step {
+            background: rgba(99, 102, 241, 0.1);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .growth-step:hover {
+            background: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .growth-step .step-icon {
+            font-size: 28px;
+        }
+
+        .growth-step .step-text {
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-top: 4px;
+        }
+
+        .growth-step:hover .step-text {
+            color: var(--white);
+        }
+
+        .growth-arrow {
+            font-size: 20px;
+            color: var(--accent);
+            opacity: 0.5;
+        }
+
+        /* Startup */
+        .startup-section {
+            padding: 120px 6%;
+            background: 
+                radial-gradient(ellipse at 80% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+                var(--slate-900);
+        }
+
+        .startup-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .code-window {
+            background: #0d1117;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--slate-700);
+        }
+
+        .code-header {
+            background: #161b22;
+            padding: 14px 16px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .code-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .code-dot.red { background: #ff5f56; }
+        .code-dot.yellow { background: #ffbd2e; }
+        .code-dot.green { background: #27ca40; }
+
+        .code-content {
+            padding: 24px;
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .code-content .comment { color: #8b949e; }
+        .code-content .keyword { color: #ff7b72; }
+        .code-content .string { color: #a5d6ff; }
+        .code-content .variable { color: #79c0ff; }
+
+        /* Closing */
+        .closing-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 5%;
+            background: 
+                radial-gradient(circle at 50% 50%, var(--accent-glow) 0%, transparent 50%),
+                linear-gradient(180deg, var(--slate-900) 0%, #050510 100%);
+        }
+
+        .closing-section h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(60px, 15vw, 180px);
+            background: linear-gradient(135deg, var(--accent-light), var(--cyan), var(--mint));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 0.9;
+        }
+
+        .closing-section .tagline {
+            font-size: clamp(18px, 2.5vw, 28px);
+            font-weight: 300;
+            color: var(--slate-100);
+            opacity: 0.7;
+            margin-top: 20px;
+        }
+
+        /* Progress */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--cyan));
+            z-index: 1000;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .split-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .split-section.reverse .split-image {
+                order: 0;
+            }
+
+            .split-image {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .startup-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .growth-arrow {
+                display: none;
+            }
+
+            .stat-row, .spec-row {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .goals-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .destinations {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <span class="hero-year">2026</span>
+        <div class="hero-content">
+            <h1>VISION BOARD</h1>
+            <p class="hero-subtitle">My year. My goals. Let's go.</p>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Childhood -->
+    <section class="split-section childhood-section">
+        <div class="split-image">
+            <img src="younger_self.webp" alt="Younger self">
+        </div>
+        <div class="split-content">
+            <span class="section-label">01 / Foundation</span>
+            <p class="big-quote">Make that kid proud.</p>
+        </div>
+    </section>
+
+    <!-- Graduation -->
+    <section class="split-section reverse graduation-section">
+        <div class="split-content">
+            <span class="section-label">02 / Education</span>
+            <h2 class="section-title">Graduate with Honors</h2>
+            <div class="badge-row">
+                <span class="badge">MBA</span>
+                <span class="badge">MS Info Systems</span>
+                <span class="badge">Honors</span>
+            </div>
+        </div>
+        <div class="split-image">
+            <img src="graduation.webp" alt="Graduation">
+        </div>
+    </section>
+
+    <!-- Bodybuilding -->
+    <section class="split-section bodybuilding-section">
+        <div class="split-image">
+            <img src="bodybuilding.webp" alt="Bodybuilding">
+        </div>
+        <div class="split-content">
+            <span class="section-label">03 / Discipline</span>
+            <h2 class="section-title">Compete on Stage</h2>
+            <div class="stat-row">
+                <div class="stat">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Commitment</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">365</span>
+                    <span class="stat-label">Days</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">1</span>
+                    <span class="stat-label">Stage</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Truck -->
+    <section class="split-section reverse truck-section">
+        <div class="split-content">
+            <span class="section-label">04 / Build</span>
+            <h2 class="section-title">Finish the Truck</h2>
+            <div class="spec-row">
+                <div class="spec">
+                    <span class="spec-value">7.3L</span>
+                    <span class="spec-name">Powerstroke</span>
+                </div>
+                <div class="spec">
+                    <span class="spec-value">OBS</span>
+                    <span class="spec-name">Body</span>
+                </div>
+                <div class="spec">
+                    <span class="spec-value">∞</span>
+                    <span class="spec-name">Potential</span>
+                </div>
+            </div>
+        </div>
+        <div class="split-image">
+            <img src="truck.webp" alt="Truck build">
+        </div>
+    </section>
+
+    <!-- Goals -->
+    <section class="goals-section">
+        <span class="section-label">05 / Daily</span>
+        <h2 class="section-title">Every Goal. Every Day.</h2>
+        <div class="goals-grid">
+            <div class="goal-card">
+                <span class="goal-icon">🏀</span>
+                <h3 class="goal-title">Men's League Basketball</h3>
+            </div>
+            <div class="goal-card">
+                <span class="goal-icon">👨‍👧‍👦</span>
+                <h3 class="goal-title">Be A Great Dad</h3>
+            </div>
+            <div class="goal-card">
+                <span class="goal-icon">💪</span>
+                <h3 class="goal-title">Physical Excellence</h3>
+            </div>
+            <div class="goal-card">
+                <span class="goal-icon">📈</span>
+                <h3 class="goal-title">Level Up Professionally</h3>
+            </div>
+            <div class="goal-card">
+                <span class="goal-icon">🛠️</span>
+                <h3 class="goal-title">Build With My Hands</h3>
+            </div>
+            <div class="goal-card">
+                <span class="goal-icon">⚖️</span>
+                <h3 class="goal-title">Work-Life Balance</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Family -->
+    <section class="family-section">
+        <span class="section-label">06 / Memories</span>
+        <h2 class="section-title">Family Adventures</h2>
+        <div class="destinations">
+            <div class="dest-card">
+                <div class="dest-icon">🏰</div>
+                <h3 class="dest-name">Disney</h3>
+            </div>
+            <div class="dest-card">
+                <div class="dest-icon">🌴</div>
+                <h3 class="dest-name">Beach Trip</h3>
+            </div>
+            <div class="dest-card">
+                <div class="dest-icon">✈️</div>
+                <h3 class="dest-name">Adventure</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career -->
+    <section class="career-section">
+        <span class="section-label">07 / Growth</span>
+        <h2 class="section-title">Elevate My Career</h2>
+        <div class="growth-path">
+            <div class="growth-step">
+                <span class="step-icon">📚</span>
+                <span class="step-text">Learn</span>
+            </div>
+            <span class="growth-arrow">→</span>
+            <div class="growth-step">
+                <span class="step-icon">🎯</span>
+                <span class="step-text">Focus</span>
+            </div>
+            <span class="growth-arrow">→</span>
+            <div class="growth-step">
+                <span class="step-icon">🚀</span>
+                <span class="step-text">Launch</span>
+            </div>
+            <span class="growth-arrow">→</span>
+            <div class="growth-step">
+                <span class="step-icon">👑</span>
+                <span class="step-text">Lead</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Startup -->
+    <section class="startup-section">
+        <div class="startup-grid">
+            <div class="code-window">
+                <div class="code-header">
+                    <span class="code-dot red"></span>
+                    <span class="code-dot yellow"></span>
+                    <span class="code-dot green"></span>
+                </div>
+                <div class="code-content">
+                    <span class="comment">// 2026</span><br><br>
+                    <span class="keyword">const</span> <span class="variable">startup</span> = {<br>
+                    &nbsp;&nbsp;<span class="variable">founder</span>: <span class="string">"Me"</span>,<br>
+                    &nbsp;&nbsp;<span class="variable">status</span>: <span class="string">"Building"</span>,<br>
+                    &nbsp;&nbsp;<span class="variable">commitment</span>: <span class="string">"100%"</span><br>
+                    };
+                </div>
+            </div>
+            <div class="split-content">
+                <span class="section-label">08 / Create</span>
+                <h2 class="section-title">Launch a Startup</h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- Closing -->
+    <section class="closing-section">
+        <h2>THIS IS<br>MY YEAR</h2>
+        <p class="tagline">Let's make it happen.</p>
+    </section>
+
+    <script>
+        const progressBar = document.getElementById('progressBar');
+        window.addEventListener('scroll', () => {
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            progressBar.style.width = scrollPercent + '%';
+        });
+    </script>
+</body>
+</html>
